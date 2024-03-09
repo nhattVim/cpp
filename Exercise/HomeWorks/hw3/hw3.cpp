@@ -1,7 +1,11 @@
 #include <bits/stdc++.h>
 #define max 100
 
-using namespace std;
+using std::cin;
+using std::cout;
+using std::string;
+using std::vector;
+using std::endl;
 
 struct Customer {
     string          name;
