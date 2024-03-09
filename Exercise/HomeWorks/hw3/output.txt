@@ -1,0 +1,35 @@
+Number of customers: Name: Address: Num of phones: Phone number: 0 : Phone number: 1 : Name: Address: Num of phones: Phone number: 0 : Phone number: 1 : Phone number: 2 : 
+
+
+
+Number of customers: 2
+Name: Le Nhat Truong
+Address: Binh Dinh
+List of phones: 0867755734 0353260427 
+Name: Hoang Huu Nhan
+Address: Viet Nam
+List of phones: 0867755113 0353260497 0166419723 
+
+
+
+Name: Address: Num of phones: Phone number: 0 : 
+
+
+Index for insert: 
+
+
+Successfully inserted customer at index 1
+
+
+
+
+Number of customers: 3
+Name: Le Nhat Truong
+Address: Binh Dinh
+List of phones: 0867755734 0353260427 
+Name: Phung My Hoang
+Address: Vinh Thanh, Binh Dinh
+List of phones: 0364597233 
+Name: Hoang Huu Nhan
+Address: Viet Nam
+List of phones: 0867755113 0353260497 0166419723 

@@ -1,0 +1,46 @@
+Name: Age: GPA: Name: Age: GPA: Name: Age: GPA: Name: Age: GPA: Name: Age: GPA: 
+
+Name: Le Nhat Truong
+Age: 20
+GPA: 8.9
+Name: Tran Tue Khanh
+Age: 20
+GPA: 9.9
+Name: Huynh Ha Thanh Truc
+Age: 20
+GPA: 8.7
+Name: Phung My Hoang
+Age: 19
+GPA: 7.7
+Name: Nguyen Thi Tu An
+Age: 20
+GPA: 9.2
+
+X: 
+
+d:3
+
+Name to delete student:
+
+Name: Le Nhat Truong
+Age: 20
+GPA: 8.9
+Name: Tran Tue Khanh
+Age: 20
+GPA: 9.9
+Name: Huynh Ha Thanh Truc
+Age: 20
+GPA: 8.7
+Name: Phung My Hoang
+Age: 19
+GPA: 7.7
+Name: Nguyen Thi Tu An
+Age: 20
+GPA: 9.2
+Name: 
+Age: 0
+GPA: 0
+Name: 
+Age: 0
+GPA: 0
+
