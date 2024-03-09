@@ -1,6 +1,4 @@
 #include <bits/stdc++.h>
-#include <cstdio>
-#include <string>
 #define max 100
 
 using namespace std;
@@ -118,6 +116,18 @@ void appendPhone (listOfCustomer &l, string name, string phone) {
     }
 }
 
+void mergeCustomers (listOfCustomer &l, Customer c) {
+    if (findCustomerByName(l, c.name) == -1) {
+        insertCustomers(l, c, l.numOfCustomer);
+    } else {
+        for (int i = 0; i < c.phoneNumbers.size(); i++) {
+            if (c.phoneNumbers[i] != l.arrCustomer[findCustomerByName(l, c.name)].phoneNumbers[i]) {
+                l.arrCustomer[findCustomerByName(l, c.name)].phoneNumbers.push_back(c.phoneNumbers[i]);
+            }
+        }
+    }
+}
+
 int main (int argc, char *argv[]) {
     Customer c; listOfCustomer l ; string name; int k;
     inputListOfCustomers(l);
@@ -186,5 +196,48 @@ int main (int argc, char *argv[]) {
     cout << "\nList of customers after append: ";
     outputListOfCustomers(l);
 
+    // e) merge customer
+    cout << "\nInput a customer to merge" << endl;
+    Customer customer;
+    inputCustomer(customer);
+    mergeCustomers(l, customer);
+    cout << "\nList of customers after merge: ";
+    outputListOfCustomers(l);
+
     return 0;
 }
+
+// 3
+// Le Nhat Truong
+// Binh Dinh
+// 2
+// 0867755734
+// 0353260427
+// Huynh Minh Lam
+// Viet Nam
+// 2
+// 036419723
+// 023461972
+// Hoang Huu Nhan
+// Viet Nam
+// 3
+// 0867755113
+// 0353260497
+// 0166419723
+// Phung My Hoang
+// Vinh Thanh, Binh Dinh
+// 2
+// 0364597233
+// 0867755734
+// 1
+// Le Nhat Truong
+// 2
+// Le Nhat Truong
+// 0364597233
+// 0364597233
+// Hoang Huu Nhan
+// 0164297113
+// Hoang Huu Nhan
+// Viet Nam
+// 1
+// 1131131131
