@@ -1,0 +1,63 @@
+-------------------------
+MaSV: 4351050063
+Ho ten: Nguyễn Hoàng Hà
+Ngay sinh: 05/01/2002
+Que quan: Bình Định
+Truong PT: THPT Trần Cao Vân
+Ten nganh: Công nghệ thông tin
+-------------------------
+MaSV: 4351050080
+Ho ten: Trương Thị Anh Hậu
+Ngay sinh: 24/02/2002
+Que quan: Bình Định
+Truong PT: THPT Xuân Diệu
+Ten nganh: Công nghệ thông tin
+-------------------------
+MaSV: 4351050412
+Ho ten: Châu Nguyễn Thu Hiền
+Ngay sinh: 25/04/2002
+Que quan: Bình Định
+Truong PT: THPT Ngô Mây
+Ten nganh: Công nghệ thông tin
+-------------------------
+MaSV: 4351050087
+Ho ten: Võ Thị Hiền
+Ngay sinh: 18/05/2002
+Que quan: Bình Định
+Truong PT: THPT Nguyễn Hồng Đạo
+Ten nganh: Công nghệ thông tin
+-------------------------
+MaSV: 4351050093
+Ho ten: Trần Quang Hiếu
+Ngay sinh: 01/05/2002
+Que quan: Bình Định
+Truong PT: THPT Nguyễn Hữu Quang
+Ten nganh: Công nghệ thông tin
+-------------------------
+MaSV: 4351050097
+Ho ten: Nguyễn Gia Hoan
+Ngay sinh: 09/09/2002
+Que quan: Bình Định
+Truong PT: THPT Quy Nhơn
+Ten nganh: Công nghệ thông tin
+-------------------------
+MaSV: 4351050100
+Ho ten: Huỳnh Kim Hoàng
+Ngay sinh: 18/06/2002
+Que quan: Bình Định
+Truong PT: THPT Nguyễn Thái Học
+Ten nganh: Công nghệ thông tin
+-------------------------
+MaSV: 4351050102
+Ho ten: Tống Văn Hoàng
+Ngay sinh: 01/04/2002
+Que quan: Bình Định
+Truong PT: THPT Tây Sơn
+Ten nganh: Công nghệ thông tin
+-------------------------
+MaSV: 4351050103
+Ho ten: TRẦN THỊ THU HỒNG
+Ngay sinh: 01/08/2002
+Que quan: Bình Định
+Truong PT: THPT An Lương
+Ten nganh: Công nghệ thông tin

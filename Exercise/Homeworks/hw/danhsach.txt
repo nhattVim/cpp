@@ -1,0 +1,15 @@
+4351050406,Nguyễn Phúc Giang,27/05/2002,Phú Yên,THPT Phan Đình Phùng,Công nghệ thông tin
+4351050063,Nguyễn Hoàng Hà,05/01/2002,Bình Định,THPT Trần Cao Vân,Công nghệ thông tin
+4351050065,nguyễn trần ngọc hà,31/01/2002,Phú Yên,THPT Ngô Gia Tự,Công nghệ thông tin
+4351050073,KPÁ Y HÀO,07/06/2001,Phú Yên,PT Dân tộc nội trú tỉnh,Công nghệ thông tin
+4351050075,Võ Nguyên Hào,08/08/2001,Phú Yên,THPT Phan Chu Trinh,Công nghệ thông tin
+4351050078,Nguyễn đức hậu,09/11/2002,Quảng Bình,THPT Lê Quý Đôn,Công nghệ thông tin
+4351050080,Trương Thị Anh Hậu,24/02/2002,Bình Định,THPT Xuân Diệu,Công nghệ thông tin
+4351050412,Châu Nguyễn Thu Hiền,25/04/2002,Bình Định,THPT Ngô Mây,Công nghệ thông tin
+4351050087,Võ Thị Hiền,18/05/2002,Bình Định,THPT Nguyễn Hồng Đạo,Công nghệ thông tin
+4351050093,Trần Quang Hiếu,01/05/2002,Bình Định,THPT Nguyễn Hữu Quang,Công nghệ thông tin
+4351050097,Nguyễn Gia Hoan,09/09/2002,Bình Định,THPT Quy Nhơn,Công nghệ thông tin
+4351050100,Huỳnh Kim Hoàng,18/06/2002,Bình Định,THPT Nguyễn Thái Học,Công nghệ thông tin
+4351050102,Tống Văn Hoàng,01/04/2002,Bình Định,THPT Tây Sơn,Công nghệ thông tin
+4351050414,Trần Ngọc Hữu Hoàng,22/01/2002,Gia Lai,Trường THPT Nguyễn Thái Học,Công nghệ thông tin
+4351050103,TRẦN THỊ THU HỒNG,01/08/2002,Bình Định,THPT An Lương,Công nghệ thông tin
