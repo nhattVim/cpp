@@ -1,15 +1,10 @@
 #include <bits/stdc++.h>
-#include <cstdio>
-#include <iomanip>
-#include <string>
 
 using std::string;
 using std::vector;
 using std::fstream;
 using std::cout;
 using std::cin;
-using std::setw;
-using std::left;
 using std::endl;
 using std::ios;
 using std::stringstream;
