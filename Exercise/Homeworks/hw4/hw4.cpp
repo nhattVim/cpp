@@ -46,35 +46,82 @@ void printSLL (SLLStudents *p) {
 void writeFile (const string fileName, SLLStudents *p) {
     fstream file(fileName.c_str());
     while (p != nullptr) {
-        file << p -> data.name << " " << p -> data.age << p -> data.gpa << endl;
+        file << p -> data.name << " " << p -> data.age << " " << p -> data.gpa << endl;
         p = p -> next;
     }
     file.close();
 }
 
-void insert (SLLStudents* &p, Student s) {
+void addToEnd (SLLStudents* &p, Student s) {
     SLLStudents *q = new SLLStudents;
     q -> data = s;
-    q -> next = p;
-    p = q;
+    q -> next = nullptr;
+    if (p == nullptr) {
+        p = q;
+        return;
+    }
+    SLLStudents *temp = p;
+    while ( temp -> next != nullptr) {
+        temp = temp -> next;
+    }
+    temp -> next = q;
+}
+
+SLLStudents *rankStudent (SLLStudents *p) {
+    SLLStudents *head = nullptr, *last = nullptr;
+    while (p != nullptr) {
+        if (p -> data.gpa >= 8) {
+            SLLStudents *tmp = new SLLStudents;
+            tmp -> data = p -> data;
+            tmp -> next = nullptr;
+            if (head == nullptr) {
+                head = tmp;
+            } else {
+                last -> next = tmp;
+            }
+            last = tmp;
+        }
+        p = p -> next;
+    }
+    return head;
+}
+
+SLLStudents *findByName (SLLStudents *p, string name) {
+    SLLStudents *q = new SLLStudents;
+    while (p != nullptr) {
+        if (p -> data.name == name) {
+        
+        }
+    }
 }
 
 int main (int argc, char *argv[]) {
     // a)
     SLLStudents *p = readFile("hw4.txt");
-    printSLL(p);
 
     // b)
-    writeFile("test.txt", p);
+    printSLL(p);
+    cout << "\n\n";
 
     // c)
+    writeFile("students.txt", p);
+
+    // d)
     Student s;
-    s.name = "test";
+    s.name = "Nguyễn Văn Test";
     s.age = 10;
     s.gpa = 2.2;
-    insert(p, s);
-    cout << "\n\n\n";
+    addToEnd(p, s);
     printSLL(p);
+    cout << "\n\n";
+
+    // e)
+    SLLStudents *rank = rankStudent(p);
+    printSLL(rank);
+    cout << "\n\n";
+
+    // d)
+    findByName(p, "test");
 
     return 0;
 }
