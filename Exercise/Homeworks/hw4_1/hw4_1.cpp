@@ -192,7 +192,7 @@ void sortByGPA(SLLStudents *&head) {
 
 int main (int argc, char *argv[]) {
     // a)
-    SLLStudents *p = readFile("hw4.txt");
+    SLLStudents *p = readFile("hw4_1.txt");
 
     // b)
     printSLL(p);

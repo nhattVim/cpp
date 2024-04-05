@@ -129,11 +129,24 @@ void printNode (node a) {
     cout << "\n------------------------------------\n";
 }
 
-// Sap xep
-void sortNode (node &a) {
+// Sap xep giam
+void sortDec (node &a) {
     for (node i = a; i->next != nullptr; i = i->next) {
         for (node j = i->next; j != nullptr; j = j->next) {
             if (i->data < j->data) {
+                int tmp = i->data;
+                i->data = j->data;
+                j->data = tmp;
+            }
+        }
+    }
+}
+
+// Sap xep tang
+void sortInc (node &a) {
+    for (node i = a; i->next != nullptr; i = i->next) {
+        for (node j = i->next; j != nullptr; j = j->next) {
+            if (i->data > j->data) {
                 int tmp = i->data;
                 i->data = j->data;
                 j->data = tmp;
@@ -153,7 +166,8 @@ int main (int argc, char *argv[]) {
         cout << "5. Xoa phan tu cuoi\n";
         cout << "6. Xoa phan tu giua\n";
         cout << "7. Sap xep giam\n";
-        cout << "8. Duyet danh sach\n";
+        cout << "8. Sap xep tang\n";
+        cout << "9. Duyet danh sach\n";
         cout << "0. Exit\n";
         cout << "------------------------------------\n";
         cout << "Nhap lua chon: ";
@@ -176,8 +190,10 @@ int main (int argc, char *argv[]) {
             int pos; cout << "Nhap vi tri can xoa: "; cin >> pos;
             deleteMiddle(head, pos);
         } else if (lc == 7) {
-            sortNode(head);
+            sortDec(head);
         } else if (lc == 8) {
+            sortInc(head);
+        } else if (lc == 9) {
             printNode(head);
         } else if (lc == 0) {
             break;
