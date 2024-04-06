@@ -75,10 +75,10 @@ void insertMiddle (nodeSV &p, nodeSV tmp, int pos) {
         cout << "Vi tri khong hop le";
         return;
     }
-    if (n == 1) {
+    if (pos == 1) {
         insertFirst(p, tmp);
         return;
-    } else if (n == pos + 1) {
+    } else if (pos == n + 1) {
         insertLast(p, tmp);
         return;
     } else {

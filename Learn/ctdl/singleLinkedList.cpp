@@ -63,10 +63,10 @@ void insertMiddle (node &a, int x, int pos) {
     if (pos <= 0 || pos > n + 1) {
         cout << "Vi tri chen khong hop le\n";
     }
-    if (n == 1) {
+    if (pos == 1) {
         insertFirst(a, x);
         return;
-    } else if (n == pos + 1) {
+    } else if (pos == n + 1) {
         insertLast(a, x);
         return;
     } else {
