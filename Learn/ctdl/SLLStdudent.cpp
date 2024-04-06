@@ -73,18 +73,21 @@ void insertMiddle (nodeSV &p, nodeSV tmp, int pos) {
     int n = size(p);
     if (pos <= 0 || pos > n + 1) {
         cout << "Vi tri khong hop le";
+        return;
     }
     if (n == 1) {
         insertFirst(p, tmp);
+        return;
     } else if (n == pos + 1) {
         insertLast(p, tmp);
+        return;
     } else {
+        nodeSV a = p;
         for (int i = 1; i < pos - 1; i++) {
-            p = p->next;
+            a = a->next;
         }
-        nodeSV tmp = makeNodeSV(makeStudent());
-        tmp->next = p->next;
-        p->next = tmp;
+        tmp->next = a->next;
+        a->next = tmp;
     }
 }
 
@@ -114,6 +117,7 @@ void deleteLast (nodeSV &p) {
 void deleteMiddle (nodeSV &p, int pos) {
     if (pos <= 0 || pos >= size(p)) {
         cout << "Vi tri khong hop le";
+        return;
     }
     nodeSV truoc = nullptr, sau = p;
     for (int i = 1 ; i < pos; i++) {
@@ -128,16 +132,34 @@ void deleteMiddle (nodeSV &p, int pos) {
     }
 }
 
-// In
+// In sinh vien
+void prinstStudent (Student s) {
+    cout << "Ten: " << s.name << endl;
+    cout << "Tuoi: " << s.age << endl;
+    cout << "GPA: " << s.gpa << endl;
+}
+
+// In danh sach lien ket sinh vien
 void printNodeSV (nodeSV p) {
     cout << "\n---------------------------\n";
     while (!empty(p)) {
-        cout << "Ten: " << p->data.name << endl;
-        cout << "Tuoi: " << p->data.age << endl;
-        cout << "GPA: " << p->data.age << endl;
+        prinstStudent(p->data);
         p = p->next;
     }
     cout << "---------------------------\n";
+}
+
+// Sap xep sinh vien theo GPA
+void sortByGPA (nodeSV p) {
+    for (nodeSV i = p; i != nullptr; i = i->next) {
+        for (nodeSV j = i->next; j != nullptr; j = j->next) {
+            if (i->data.gpa < j->data.gpa) {
+                Student tmp = i->data;
+                i->data = j->data;
+                j->data = tmp;
+            }
+        }
+    }
 }
 
 int main (int argc, char *argv[]) {
@@ -151,7 +173,8 @@ int main (int argc, char *argv[]) {
         cout << "4. Them vao giua\n";
         cout << "5. Xoa phan tu dau\n";
         cout << "6. Xoa phan tu cuoi\n";
-        cout << "7. Xoa phan tu giua";
+        cout << "7. Xoa phan tu giua\n";
+        cout << "8. Sap xep giam sinh vien theo GPA";
         cout << "\n-------------------MENU-------------------\n";
         cout << "Nhap lua chon: ";
         int n; cin >> n;
@@ -162,37 +185,44 @@ int main (int argc, char *argv[]) {
             }
             case 1: {
                 if (empty(sv)) {
-                    cout << "Danh sach rong";
+                    cout << "Danh sach rong" << endl;
                 } else {
                     printNodeSV(sv);
                 }
                 break;
             }
             case 2: {
-                nodeSV tmp = makeNodeSV(makeStudent());
-                insertFirst(sv, tmp);
+                nodeSV tmp1 = makeNodeSV(makeStudent());
+                insertFirst(sv, tmp1);
                 break;
             }
             case 3: {
-                nodeSV tmp = makeNodeSV(makeStudent());
-                insertLast(sv, tmp);
+                nodeSV tmp2 = makeNodeSV(makeStudent());
+                insertLast(sv, tmp2);
                 break;
             }
             case 4: {
-                int pos; cout << "Nhap vi tri can chen: "; cin >> pos;
-                nodeSV tmp = makeNodeSV(makeStudent());
-                insertMiddle(sv, tmp, pos);
+                int pos1; cout << "Nhap vi tri can chen: "; cin >> pos1;
+                nodeSV tmp3 = makeNodeSV(makeStudent());
+                insertMiddle(sv, tmp3, pos1);
                 break;
             }
             case 5: {
                 deleteFirt(sv);
+                break;
             }
             case 6: {
                 deleteLast(sv);
+                break;
             }
             case 7: {
-                int pos; cout << "Nhap vi tri can xoa: "; cin >> pos;
-                deleteMiddle(sv, pos);
+                int pos2; cout << "Nhap vi tri can xoa: "; cin >> pos2;
+                deleteMiddle(sv, pos2);
+                break;
+            }
+            case 8: {
+                sortByGPA(sv);
+                break;
             }
             default: {
                 cout << "Lua chon khong hop le";
