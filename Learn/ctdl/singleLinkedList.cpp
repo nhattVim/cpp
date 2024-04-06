@@ -98,6 +98,7 @@ void deleteLast (node &a) {
         a = nullptr;
     } else {
         truoc->next = nullptr;
+        delete sau;
     }
 }
 
@@ -112,10 +113,10 @@ void deleteMiddle (node &a, int pos) {
         sau = sau->next;
     }
     if (truoc == nullptr) {
-        // deleteFirst(a);
         a = a->next;
     } else {
         truoc->next = sau->next;
+        delete sau;
     }
 }
 
