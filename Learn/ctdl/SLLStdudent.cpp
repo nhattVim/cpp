@@ -36,7 +36,7 @@ bool empty(nodeSV p) {
 }
 
 // Dem so phan tu
-int size(nodeSV p) {
+int getSize(nodeSV p) {
     int d = 0;
     while (!empty(p)) {
         d++;
@@ -70,7 +70,7 @@ void insertLast (nodeSV &p, nodeSV tmp) {
 
 // Them vao giua danh sach
 void insertMiddle (nodeSV &p, nodeSV tmp, int pos) {
-    int n = size(p);
+    int n = getSize(p);
     if (pos <= 0 || pos > n + 1) {
         cout << "Vi tri khong hop le";
         return;
@@ -115,7 +115,7 @@ void deleteLast (nodeSV &p) {
 
 // Xoa phan tu o giua
 void deleteMiddle (nodeSV &p, int pos) {
-    if (pos <= 0 || pos >= size(p)) {
+    if (pos <= 0 || pos >= getSize(p)) {
         cout << "Vi tri khong hop le";
         return;
     }

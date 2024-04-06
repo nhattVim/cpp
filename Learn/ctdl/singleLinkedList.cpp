@@ -23,7 +23,7 @@ bool empty(node a) {
 }
 
 // Dem so phan tu
-int size(node a) {
+int getSize(node a) {
     int cnt = 0;
     while (a != nullptr) {
         cnt++;
@@ -59,7 +59,7 @@ void insertLast (node &a, int x) {
 
 // Them ptu vao giua
 void insertMiddle (node &a, int x, int pos) {
-    int n = size(a);
+    int n = getSize(a);
     if (pos <= 0 || pos > n + 1) {
         cout << "Vi tri chen khong hop le\n";
     }
@@ -104,7 +104,7 @@ void deleteLast (node &a) {
 
 // Xoa o giua
 void deleteMiddle (node &a, int pos) {
-    if (pos <= 0 || pos > size(a)) {
+    if (pos <= 0 || pos > getSize(a)) {
         cout << "Vi tri xoa khong hop le";
     }
     node truoc = nullptr, sau = a;
