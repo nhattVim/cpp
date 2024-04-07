@@ -42,8 +42,8 @@ void deleteStudent(struct Student a[], int n, int k) {
 }
 
 int main (int argc, char *argv[]) {
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("2.1.input.txt", "r", stdin);
+    freopen("2.1.output.txt", "w", stdout);
 
     int n = 5;
     struct Student a[100];

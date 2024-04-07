@@ -92,7 +92,7 @@ void insertMiddle (nodeSV &p, nodeSV tmp, int pos) {
 }
 
 // Xoa phan tu o dau
-void deleteFirt (nodeSV &p) {
+void deleteFirst (nodeSV &p) {
     if (empty(p)) return;
     p = p->next;
 }
@@ -125,7 +125,7 @@ void deleteMiddle (nodeSV &p, int pos) {
         sau = sau->next;
     }
     if (truoc == nullptr) {
-        deleteFirt(p);
+        deleteFirst(p);
     } else {
         truoc->next = sau->next;
         delete sau;
@@ -208,7 +208,7 @@ int main (int argc, char *argv[]) {
                 break;
             }
             case 5: {
-                deleteFirt(sv);
+                deleteFirst(sv);
                 break;
             }
             case 6: {
