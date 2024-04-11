@@ -1,0 +1,42 @@
+Ten: Nguyễn Phúc Giang
+Tuoi: 27
+GPA: 3.4
+Ten: Nguyễn Hoàng Hà
+Tuoi: 20
+GPA: 4
+Ten: Nguyễn Trần Ngọc hà
+Tuoi: 18
+GPA: 8.1
+Ten: Kpá Y Hào
+Tuoi: 22
+GPA: 3.7
+Ten: Võ Nguyên Hào
+Tuoi: 24
+GPA: 9.2
+Ten: Nguyễn Đức Hậu
+Tuoi: 19
+GPA: 5.6
+Ten: Trương Thị Anh Hậu
+Tuoi: 24
+GPA: 8
+Ten: Châu Nguyễn Thu Hiền
+Tuoi: 16
+GPA: 3.7
+Ten: Võ Thị Hiền
+Tuoi: 23
+GPA: 2.5
+Ten: Trần Quang Hiếu
+Tuoi: 19
+GPA: 6.6
+Ten: Nguyễn Gia Hoan
+Tuoi: 24
+GPA: 9.7
+Ten: Huỳnh Kim Hoàng
+Tuoi: 22
+GPA: 8
+Ten: Tống Văn Hoàng
+Tuoi: 30
+GPA: 1.9
+Ten: Trần Ngọc Hữu Hoàng
+Tuoi: 18
+GPA: 4
