@@ -1,7 +1,4 @@
 #include <bits/stdc++.h>
-#include <cstdio>
-#include <fstream>
-#include <string>
 
 using namespace std;
 
@@ -153,6 +150,7 @@ void writeFile (const string filename, node a) {
         file << "GPA: " << a->data.gpa << endl;
         a = a->next;
     }
+    file.close();
 }
 
 node searchByName (node a, string name) {
@@ -171,9 +169,45 @@ void deleteByName (node &a, string name) {
     }
 }
 
+// void insertionSort (node &a) {
+//     if (a == nullptr || a->next == nullptr) {
+//         return;
+//     }
+//     for (node i = a->next; i != nullptr; i = i->next) {
+//         node pos = i->prev;
+//         while (pos != nullptr && pos->data.gpa < i->data.gpa ) {
+//             pos->next->data = pos->data;
+//             pos = pos->prev;
+//         }
+//     }
+// }
+void insertionSort(node &a) {
+    if (a == nullptr || a->next == nullptr) {
+        return; // Danh sách rỗng hoặc chỉ có một nút, không cần sắp xếp
+    }
+
+    node sorted = a->next;
+    while (sorted != nullptr) {
+        node current = sorted;
+        sorted = sorted->next;
+
+        node pos = current->prev;
+        while (pos != nullptr && pos->data.gpa < current->data.gpa) {
+            pos->next->data = pos->data;
+            pos = pos->prev;
+        }
+
+        if (pos == nullptr) {
+            a->data = current->data;
+        } else {
+            pos->next->data = current->data;
+        }
+    }
+}
+
 int main (int argc, char *argv[]) {
     // a)
-    node sv = readFile("hw4_2.txt");
+    node sv = readFile("hw4_2_1.txt");
 
     // b)
     printNode(sv);
@@ -191,10 +225,17 @@ int main (int argc, char *argv[]) {
     }
 
     // e)
-    cout << "Name to delete: ";
+    cout << "\nName to delete: ";
     string nameToDelete; getline(cin, nameToDelete);
-    cout << nameToDelete;
-    deleteByName(sv, nameToDelete);
+    if (searchByName(sv, nameToDelete)) {
+        deleteByName(sv, nameToDelete);
+        printNode(sv);
+    } else {
+        cout << "Not found";
+    }
+
+    // d)
+    insertionSort(sv);
     printNode(sv);
 
     return 0;
