@@ -1,13 +1,6 @@
 #include <bits/stdc++.h>
 
-using std::string;
-using std::vector;
-using std::fstream;
-using std::cout;
-using std::cin;
-using std::endl;
-using std::ios;
-using std::stringstream;
+using namespace std;
 
 struct Student {
     string MaSV;
