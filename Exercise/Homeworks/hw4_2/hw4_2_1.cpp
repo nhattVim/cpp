@@ -181,29 +181,30 @@ void deleteByName (node &a, string name) {
 //         }
 //     }
 // }
-void insertionSort(node &a) {
-    if (a == nullptr || a->next == nullptr) {
-        return; // Danh sách rỗng hoặc chỉ có một nút, không cần sắp xếp
-    }
 
-    node sorted = a->next;
-    while (sorted != nullptr) {
-        node current = sorted;
-        sorted = sorted->next;
-
-        node pos = current->prev;
-        while (pos != nullptr && pos->data.gpa < current->data.gpa) {
-            pos->next->data = pos->data;
-            pos = pos->prev;
-        }
-
-        if (pos == nullptr) {
-            a->data = current->data;
-        } else {
-            pos->next->data = current->data;
-        }
-    }
-}
+// void insertionSort(node &a) {
+//     if (a == nullptr || a->next == nullptr) {
+//         return; // Danh sách rỗng hoặc chỉ có một nút, không cần sắp xếp
+//     }
+//
+//     node p = a->next;
+//     while (p != nullptr) {
+//         node current = p;
+//         p = p->next;
+//
+//         node pos = current->prev;
+//         while (pos != nullptr && pos->data.gpa < current->data.gpa) {
+//             pos->next->data = pos->data;
+//             pos = pos->prev;
+//         }
+//
+//         if (pos == nullptr) {
+//             a->data = current->data;
+//         } else {
+//             pos->next->data = current->data;
+//         }
+//     }
+// }
 
 int main (int argc, char *argv[]) {
     // a)
@@ -234,9 +235,9 @@ int main (int argc, char *argv[]) {
         cout << "Not found";
     }
 
-    // d)
-    insertionSort(sv);
-    printNode(sv);
+    // // f)
+    // insertionSort(sv);
+    // printNode(sv);
 
     return 0;
 }

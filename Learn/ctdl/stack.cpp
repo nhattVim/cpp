@@ -1,6 +1,4 @@
 #include <bits/stdc++.h>
-#include <ostream>
-#include <stack>
 
 using namespace std;
 
