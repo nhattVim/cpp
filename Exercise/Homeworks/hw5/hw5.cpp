@@ -12,13 +12,13 @@ struct BFT {
     BFT *left, *right;
 };
 
-typedef struct BFT* node;
+typedef struct BFT *node;
 
-node makeNode (Person p, node l, node r) {
-    return new BFT {p, l, r};
+node makeNode(Person p, node l, node r) {
+    return new BFT{p, l, r};
 }
 
-node initialBFT () {
+node initialBFT() {
     node n1, n2, n3, n4, n5, n6;
 
     n1 = makeNode({"Nguyen D", 1960}, nullptr, nullptr);
@@ -31,7 +31,7 @@ node initialBFT () {
     return n6;
 }
 
-void printBFT (node root) {
+void printBFT(node root) {
     if (root) {
         cout << root->data.name << " " << root->data.yearOfBirth << endl;
         printBFT(root->left);
@@ -39,52 +39,63 @@ void printBFT (node root) {
     }
 }
 
-int countPersons (node root) {
-    if (!root) return 0;
+int countPersons(node root) {
+    if (!root)
+        return 0;
     return 1 + countPersons(root->left) + countPersons(root->right);
 }
 
-int height (node root) {
-    if (!root) return 0;
+int height(node root) {
+    if (!root)
+        return 0;
     return 1 + max(height(root->left), height(root->right));
 }
 
-int countPersonsLessThan (node root, int year) {
-    if (!root) { 
+int countPersonsLessThan(node root, int year) {
+    if (!root) {
         return 0;
     } else if (root->data.yearOfBirth < year) {
-        return countPersonsLessThan(root->left, year) + countPersonsLessThan(root->right, year) + 1;
+        return countPersonsLessThan(root->left, year) +
+               countPersonsLessThan(root->right, year) + 1;
     } else {
         return 0;
     }
 }
 
-node findPerson (node root, string name) {
-    if (!root) return nullptr;
-    if (root->data.name == name) return root;
-    if (findPerson(root->left, name)) return findPerson(root->left, name);
+node findPerson(node root, string name) {
+    if (!root)
+        return nullptr;
+    if (root->data.name == name)
+        return root;
+    if (findPerson(root->left, name))
+        return findPerson(root->left, name);
     return findPerson(root->right, name);
 }
 
-bool isParent (node root, string pName, string cName) {
+bool isParent(node root, string pName, string cName) {
     node parent;
     parent = findPerson(root, pName);
     if (!parent) {
         return false;
     } else {
-        return (parent->left && parent->left->data.name == cName) || (parent->right && parent->right->data.name == cName);
+        return (parent->left && parent->left->data.name == cName) ||
+               (parent->right && parent->right->data.name == cName);
     }
 }
 
-int levelOfPerson (node root, string name) {
-    if (!root) return 0;
-    if (root->data.name == name) return 1;
-    if (findPerson(root->left, name)) return levelOfPerson(root->left, name) + 1;
+int levelOfPerson(node root, string name) {
+    if (!root)
+        return 0;
+    if (root->data.name == name)
+        return 1;
+    if (findPerson(root->left, name))
+        return levelOfPerson(root->left, name) + 1;
     return levelOfPerson(root->right, name) + 1;
 }
 
-bool isDescendant (node root, string parent, string child) {
-    if (!root) return false;
+bool isDescendant(node root, string parent, string child) {
+    if (!root)
+        return false;
     if (findPerson(findPerson(root, parent)->left, child)) {
         return true;
     } else if (findPerson(findPerson(root, parent)->right, child)) {
@@ -93,11 +104,11 @@ bool isDescendant (node root, string parent, string child) {
     return false;
 }
 
-void printDesccendant (node root, string name) {
+void printDesccendant(node root, string name) {
     printBFT(findPerson(root, name));
 }
 
-int main (int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
     node root;
     root = initialBFT();
     printBFT(root);
@@ -105,12 +116,14 @@ int main (int argc, char *argv[]) {
     cout << "Height of BTS is: " << height(root) << endl;
 
     if (findPerson(root, "Nguyen E")) {
-        cout << findPerson(root, "Nguyen E")->data.name << " " << findPerson(root, "Nguyen E")->data.yearOfBirth << endl;
+        cout << findPerson(root, "Nguyen E")->data.name << " "
+             << findPerson(root, "Nguyen E")->data.yearOfBirth << endl;
     } else {
         cout << "Not found" << endl;
     }
 
-    cout << "Number persons YOB < 1965 is: " << countPersonsLessThan(root, 1965) << endl;
+    cout << "Number persons YOB < 1965 is: " << countPersonsLessThan(root, 1965)
+         << endl;
 
     string pName = "Nguyen B", cName = "Nguyen E";
     if (isParent(root, pName, cName)) {
@@ -120,7 +133,8 @@ int main (int argc, char *argv[]) {
     }
 
     string levelName = "Nguyen F";
-    cout << "Level of " << levelName << " is: " << levelOfPerson(root, levelName) << endl;
+    cout << "Level of " << levelName
+         << " is: " << levelOfPerson(root, levelName) << endl;
 
     string parent = "Nguyen B", child = "Nguyen D";
     if (isDescendant(root, parent, child)) {
@@ -128,7 +142,7 @@ int main (int argc, char *argv[]) {
     } else {
         cout << child << " is not descendant of " << parent << endl;
     }
-    
+
     string xName = "Nguyen C";
     cout << "List of all descendant of " << xName << ": " << endl;
     printDesccendant(root, xName);
