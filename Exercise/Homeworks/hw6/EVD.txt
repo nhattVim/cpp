@@ -1,0 +1,8 @@
+hello:xin chào
+hi:chào
+book:sách
+name:tên
+old:tuổi
+good:tốt
+beutiful:đẹp
+awesome:tuyệt vời
