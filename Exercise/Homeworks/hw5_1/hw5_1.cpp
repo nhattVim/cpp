@@ -105,7 +105,54 @@ bool isDescendant(node root, string parent, string child) {
 }
 
 void printDesccendant(node root, string name) {
-    printBFT(findPerson(root, name));
+    if (findPerson(root, name)) {
+        printBFT(findPerson(root, name)->left);
+        printBFT(findPerson(root, name)->right);
+    }
+}
+
+void setPerson(node root, string x, Person p) {
+    if (findPerson(root, x)) {
+        findPerson(root, x)->data = p;
+    }
+}
+
+bool isSibling(node root, string x, string y) {
+    if (root == nullptr) {
+        return false;
+    }
+    if (isParent(root, root->data.name, x) &&
+        isParent(root, root->data.name, y)) {
+        return true;
+    } else {
+        return isSibling(root->left, x, y) || isSibling(root->right, x, y);
+    }
+}
+
+bool isSameBFT(node root1, node root2) {
+    if (root1 == nullptr && root2 == nullptr) {
+        return true;
+    } else if (root1 != nullptr && root2 != nullptr &&
+               root1->data.name == root2->data.name &&
+               root1->data.yearOfBirth == root2->data.yearOfBirth) {
+        return isSameBFT(root1->left, root2->left) &&
+               isSameBFT(root1->right, root2->right);
+    } else {
+        return false;
+    }
+}
+
+bool addPerson(node root, string x, Person p) {
+    if (findPerson(root, x)->left && findPerson(root, x)->right) {
+        return false;
+    } else {
+        if (findPerson(root, x)->left == nullptr) {
+            findPerson(root, x)->left = makeNode(p, nullptr, nullptr);
+        } else {
+            findPerson(root, x)->right = makeNode(p, nullptr, nullptr);
+        }
+        return true;
+    }
 }
 
 int main(int argc, char *argv[]) {
@@ -115,6 +162,7 @@ int main(int argc, char *argv[]) {
     cout << "Number of persons in BTS is: " << countPersons(root) << endl;
     cout << "Height of BTS is: " << height(root) << endl;
 
+    cout << "\n\n";
     if (findPerson(root, "Nguyen E")) {
         cout << findPerson(root, "Nguyen E")->data.name << " "
              << findPerson(root, "Nguyen E")->data.yearOfBirth << endl;
@@ -122,9 +170,11 @@ int main(int argc, char *argv[]) {
         cout << "Not found" << endl;
     }
 
+    cout << "\n\n";
     cout << "Number persons YOB < 1965 is: " << countPersonsLessThan(root, 1965)
          << endl;
 
+    cout << "\n\n";
     string pName = "Nguyen B", cName = "Nguyen E";
     if (isParent(root, pName, cName)) {
         cout << pName << " is parent of " << cName << endl;
@@ -132,10 +182,12 @@ int main(int argc, char *argv[]) {
         cout << pName << " is not parent of " << cName << endl;
     }
 
+    cout << "\n\n";
     string levelName = "Nguyen F";
     cout << "Level of " << levelName
          << " is: " << levelOfPerson(root, levelName) << endl;
 
+    cout << "\n\n";
     string parent = "Nguyen B", child = "Nguyen D";
     if (isDescendant(root, parent, child)) {
         cout << child << " is descendant of " << parent << endl;
@@ -143,9 +195,36 @@ int main(int argc, char *argv[]) {
         cout << child << " is not descendant of " << parent << endl;
     }
 
+    cout << "\n\n";
     string xName = "Nguyen C";
     cout << "List of all descendant of " << xName << ": " << endl;
     printDesccendant(root, xName);
 
+    cout << "\n\n";
+    Person p = {"Nguyen M", 2004};
+    setPerson(root, "Nguyen C", p);
+    printBFT(root);
+
+    cout << "\n\n";
+    if (isSibling(root, "Nguyen E", "Nguyen F")) {
+        cout << "Nguyen E and Nguyen F is sibling";
+    }
+
+    cout << "\n\n";
+    node newRoot = initialBFT();
+    if (isSameBFT(root, newRoot)) {
+        cout << "root == newRoot";
+    } else {
+        cout << "root != newRoot";
+    }
+
+    cout << "\n\n";
+    Person newP = {"Nguyen N", 1985};
+    if (addPerson(root, "Nguyen B", newP)) {
+        cout << "Added a child to " << "Nguyen B" << " sucessfully" << endl;
+    } else {
+        cout << "Added a child to " << "Nguyen B" << " failed" << endl;
+    }
+    printBFT(root);
     return 0;
 }
