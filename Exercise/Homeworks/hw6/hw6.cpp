@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <fstream>
 
 using namespace std;
 
@@ -97,6 +98,41 @@ void deleteWord(node &root, string eng) {
 }
 
 void printWordByH(node root) {
+    if (root == nullptr) {
+        return;
+    }
+    if (root->data.english[0] == 'H') {
+        cout << root->data.english << " : " << root->data.vietnamese << endl;
+    }
+    printWordByH(root->left);
+    printWordByH(root->right);
+}
+
+int countAfterAWord(node root, string word) {
+    if (root == nullptr) {
+        return 0;
+    }
+    if (root->data.english > word) {
+        return countAfterAWord(root->left, word) +
+               countAfterAWord(root->right, word) + 1;
+    } else {
+        return countAfterAWord(root->right, word);
+    }
+}
+
+void saveToFilePreorder(node root, const string filename) {
+    if (root == nullptr) {
+        return;
+    }
+    fstream f(filename, ios::out | ios::app);
+    if (!f.is_open()) {
+        cerr << "Cannot open file for writing." << endl;
+        return;
+    }
+    f << root->data.english << ":" << root->data.vietnamese << endl;
+    f.close();
+    saveToFilePreorder(root->left, filename);
+    saveToFilePreorder(root->right, filename);
 }
 
 int main(int argc, char *argv[]) {
@@ -106,7 +142,7 @@ int main(int argc, char *argv[]) {
     printDict(root);
     cout << "\n\n";
 
-    cout << "Input a english ";
+    cout << "Input a english: ";
     cin >> eng;
     viet = findVietnamese(root, eng);
     if (viet != "")
@@ -117,5 +153,15 @@ int main(int argc, char *argv[]) {
 
     deleteWord(root, "Hello");
     printDict(root);
+    cout << "\n\n";
+
+    printWordByH(root);
+    cout << "\n\n";
+
+    string t = "Book";
+    int count = countAfterAWord(root, t);
+    cout << "There are '" << count << "' word after " << t << endl;
+
+    saveToFilePreorder(root, "test.txt");
     return 0;
 }

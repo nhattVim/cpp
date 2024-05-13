@@ -1,8 +1,7 @@
-Hello:xin chào
 Hi:chào
 Book:sách
-Name:tên
-Old:tuổi
-Good:tốt
 Beutiful:đẹp
 Awesome:tuyệt vời
+Good:tốt
+Name:tên
+Old:tuổi
