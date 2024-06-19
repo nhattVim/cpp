@@ -2,11 +2,13 @@
 
 using namespace std;
 
+// Định nghĩa cấu trúc dữ liệu Person chứa tên và năm sinh của một người
 struct Person {
     string name;
     int yearOfBirth;
 };
 
+// Định nghĩa cấu trúc dữ liệu BFT cho cây nhị phân với dữ liệu kiểu Person
 struct BFT {
     Person data;
     BFT *left, *right;
@@ -14,13 +16,16 @@ struct BFT {
 
 typedef struct BFT *node;
 
+// Tạo một nút mới cho cây nhị phân với dữ liệu là một người và hai con trái, phải
 node makeNode(Person p, node l, node r) {
     return new BFT{p, l, r};
 }
 
+// Khởi tạo một cây nhị phân đã có sẵn dữ liệu (cây mẫu)
 node initialBFT() {
     node n1, n2, n3, n4, n5, n6;
 
+    // Tạo các nút với dữ liệu của từng người và liên kết các nút để tạo cây
     n1 = makeNode({"Nguyen D", 1960}, nullptr, nullptr);
     n2 = makeNode({"Nguyen B", 1930}, nullptr, n1);
     n3 = makeNode({"Nguyen E", 1965}, nullptr, nullptr);
@@ -31,6 +36,7 @@ node initialBFT() {
     return n6;
 }
 
+// Hàm in cây nhị phân theo thứ tự trước (pre-order traversal)
 void printBFT(node root) {
     if (root) {
         cout << root->data.name << " " << root->data.yearOfBirth << endl;
@@ -39,18 +45,21 @@ void printBFT(node root) {
     }
 }
 
+// Đếm số lượng người trong cây nhị phân
 int countPersons(node root) {
     if (!root)
         return 0;
     return 1 + countPersons(root->left) + countPersons(root->right);
 }
 
+// Tính chiều cao của cây nhị phân
 int height(node root) {
     if (!root)
         return 0;
     return 1 + max(height(root->left), height(root->right));
 }
 
+// Đếm số người có năm sinh nhỏ hơn một năm cụ thể
 int countPersonsLessThan(node root, int year) {
     if (!root) {
         return 0;
@@ -62,6 +71,7 @@ int countPersonsLessThan(node root, int year) {
     }
 }
 
+// Tìm kiếm một người trong cây theo tên
 node findPerson(node root, string name) {
     if (!root)
         return nullptr;
@@ -72,6 +82,7 @@ node findPerson(node root, string name) {
     return findPerson(root->right, name);
 }
 
+// Kiểm tra xem một người có phải là cha/mẹ của người khác không
 bool isParent(node root, string pName, string cName) {
     node parent;
     parent = findPerson(root, pName);
@@ -83,6 +94,7 @@ bool isParent(node root, string pName, string cName) {
     }
 }
 
+// Tìm cấp độ (mức) của một người trong cây nhị phân
 int levelOfPerson(node root, string name) {
     if (!root)
         return 0;
@@ -93,6 +105,7 @@ int levelOfPerson(node root, string name) {
     return levelOfPerson(root->right, name) + 1;
 }
 
+// Kiểm tra xem một người có phải là hậu duệ của người khác không
 bool isDescendant(node root, string parent, string child) {
     if (!root)
         return false;
@@ -104,6 +117,7 @@ bool isDescendant(node root, string parent, string child) {
     return false;
 }
 
+// In danh sách các hậu duệ của một người
 void printDesccendant(node root, string name) {
     if (findPerson(root, name)) {
         printBFT(findPerson(root, name)->left);
@@ -111,12 +125,14 @@ void printDesccendant(node root, string name) {
     }
 }
 
+// Cập nhật thông tin của một người trong cây
 void setPerson(node root, string x, Person p) {
     if (findPerson(root, x)) {
         findPerson(root, x)->data = p;
     }
 }
 
+// Kiểm tra xem hai người có phải là anh/chị/em không
 bool isSibling(node root, string x, string y) {
     if (root == nullptr) {
         return false;
@@ -129,6 +145,7 @@ bool isSibling(node root, string x, string y) {
     }
 }
 
+// Kiểm tra xem hai cây nhị phân có giống hệt nhau không
 bool isSameBFT(node root1, node root2) {
     if (root1 == nullptr && root2 == nullptr) {
         return true;
@@ -142,6 +159,7 @@ bool isSameBFT(node root1, node root2) {
     }
 }
 
+// Thêm một người vào cây như là con của một người khác
 bool addPerson(node root, string x, Person p) {
     if (findPerson(root, x)->left && findPerson(root, x)->right) {
         return false;
@@ -155,6 +173,7 @@ bool addPerson(node root, string x, Person p) {
     }
 }
 
+// Chương trình chính
 int main(int argc, char *argv[]) {
     node root;
     root = initialBFT();
