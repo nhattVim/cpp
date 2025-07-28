@@ -3,245 +3,262 @@
 
 using std::cin;
 using std::cout;
+using std::endl;
 using std::string;
 using std::vector;
-using std::endl;
 
 struct Customer {
-    string          name;
-    string          address;
-    vector<string>  phoneNumbers;
+    string name;
+    string address;
+    vector<string> phoneNumbers;
 };
 
-struct listOfCustomer {
-    Customer    arrCustomer[max];
-    int         numOfCustomer;
+struct ListOfCustomers {
+    Customer arrCustomers[max];
+    int numOfCustomers;
 };
 
-void inputCustomer (Customer &c) {
-    int i, n; string phone;
-    cout << "Name: "; getline(cin, c.name);
-    cout << "Address: "; getline(cin, c.address);
-    cout << "Num of phones: "; cin >> n;
+void inputCustomer(Customer &c) {
+    cout << "Name: ";
+    getline(cin, c.name);
+    cout << "Address: ";
+    getline(cin, c.address);
+    int n;
+    cout << "Number of phone numbers: ";
+    cin >> n;
     cin.ignore();
     for (int i = 0; i < n; i++) {
-        cout << "Phone number: " << i << " : "; getline(cin, phone);
-        c.phoneNumbers.push_back(phone);
+        string s;
+        cout << "Phone number " << i + 1 << ": ";
+        getline(cin, s);
+        c.phoneNumbers.push_back(s);
     }
 }
 
-void outputCustomer (Customer c) {
-    int i;
+void outputCustomer(Customer c) {
     cout << "Name: " << c.name << endl;
     cout << "Address: " << c.address << endl;
-    cout << "List of phones: ";
-    for (int i = 0; i < c.phoneNumbers.size(); i++) {
+    cout << "Phone numbers: ";
+    for (int i = 0; i < c.phoneNumbers.size(); i++)
         cout << c.phoneNumbers[i] << " ";
-    }
     cout << endl;
 }
 
-void inputListOfCustomers (listOfCustomer &l) {
-    cout << "Number of customers: "; cin >> l.numOfCustomer;
+void inputListOfCustomers(ListOfCustomers &list) {
+    cout << "Number of customers: ";
+    cin >> list.numOfCustomers;
     cin.ignore();
-    for (int i = 0; i < l.numOfCustomer; i++) {
-        inputCustomer(l.arrCustomer[i]);
+    for (int i = 0; i < list.numOfCustomers; i++) {
+        inputCustomer(list.arrCustomers[i]);
     }
 }
 
-void outputListOfCustomers (listOfCustomer l) {
-    cout << "\nNumber of customers: " << l.numOfCustomer << endl;
-    for (int i = 0; i < l.numOfCustomer; i++) {
-        outputCustomer(l.arrCustomer[i]);
+void outputListOfCustomers(ListOfCustomers list) {
+    cout << "\n----------------------------------\n";
+    cout << "Number of customers: " << list.numOfCustomers << endl;
+    for (int i = 0; i < list.numOfCustomers; i++) {
+        outputCustomer(list.arrCustomers[i]);
     }
+    cout << "----------------------------------\n\n";
 }
 
-void insertCustomers (listOfCustomer &l, Customer c, int index) {
-    if (index < 0 || index > l.numOfCustomer) {
-        cout << "Invalid index. Please enter a valid index between 0 and " << l.numOfCustomer << endl;
+void insertCustomer(ListOfCustomers &list, Customer c, int index) {
+    if (index < 0 || index > list.numOfCustomers) {
+        cout << "Invalid index. Please enter a valid index between 0 and "
+             << list.numOfCustomers << endl;
     }
-    if (l.numOfCustomer == max) {
+    if (list.numOfCustomers == max) {
         cout << "Can not insert customers. List is full." << endl;
         return;
     }
-    for (int i = l.numOfCustomer; i > index; i--) {
-        l.arrCustomer[i] = l.arrCustomer[i - 1];
+    for (int i = list.numOfCustomers; i > index; i--) {
+        list.arrCustomers[i] = list.arrCustomers[i - 1];
     }
-    l.arrCustomer[index] = c;
-    l.numOfCustomer++;
+    list.arrCustomers[index] = c;
+    list.numOfCustomers++;
     cout << "Successfully inserted customer at index " << index << endl;
 }
 
-void deleteCustomer (listOfCustomer &l, int index) {
-    if (index < 0 || index >= l.numOfCustomer) {
-        cout << "Invalid index. Please enter a valid index between 0 and " << l.numOfCustomer - 1 << endl;
+void deleteCustomer(ListOfCustomers &list, int index) {
+    if (index < 0 || index >= list.numOfCustomers) {
+        cout << "Invalid index. Please enter a valid index between 0 and "
+             << list.numOfCustomers - 1 << endl;
         return;
     }
-    for (int i = index; i < l.numOfCustomer - 1; i++) {
-        l.arrCustomer[i] = l.arrCustomer[i + 1];
+    for (int i = index; i < list.numOfCustomers - 1; i++) {
+        list.arrCustomers[i] = list.arrCustomers[i + 1];
     }
-    l.numOfCustomer--;
+    list.numOfCustomers--;
     cout << "Successfully deleted customer at index " << index << endl;
 }
 
-int findCustomerByName (listOfCustomer &l, string name) {
-    for (int i = 0; i < l.numOfCustomer; i++) {
-        if (l.arrCustomer[i].name == name) {
+int findCustomerByName(ListOfCustomers list, string name) {
+    for (int i = 0; i < list.numOfCustomers; i++) {
+        if (list.arrCustomers[i].name == name) {
             return i;
         }
     }
+    cout << "No customer with name " << name << " was found" << endl;
     return -1;
 }
 
-void deleteCustomerByName (listOfCustomer &l, string name) {
-    for (int i = 0; i < l.numOfCustomer; i++) {
-        if (l.arrCustomer[i].name == name) {
-            deleteCustomer(l, i);
-        }
-    }
+void deleteCustomerByName(ListOfCustomers &list, string name) {
+    int index = findCustomerByName(list, name);
+    if (index != -1)
+        deleteCustomer(list, index);
 }
 
-int findCustomerByPhone (listOfCustomer &l, string phone) {
-    for (int i = 0; i < l.numOfCustomer; i++) {
-        for (int j = 0; j < l.arrCustomer[i].phoneNumbers.size(); i++) {
-            if (phone == l.arrCustomer[i].phoneNumbers[j]) {
-                return i;
+void findCustomerByPhoneNumber(ListOfCustomers list, string phoneNumber) {
+    for (int i = 0; i < list.numOfCustomers; i++) {
+        for (int j = 0; j < list.arrCustomers[i].phoneNumbers.size(); j++) {
+            if (list.arrCustomers[i].phoneNumbers[j] == phoneNumber) {
+                outputCustomer(list.arrCustomers[i]);
+                return;
             }
         }
     }
-    return -1;
+    cout << "No customer with phone number " << phoneNumber << " was found"
+         << endl;
 }
 
-void appendPhone (listOfCustomer &l, string name, string phone) {
-    if (findCustomerByName(l, name) == -1) {
-        cout << "No customers found with name: " << name << endl;
-    } else {
-        l.arrCustomer[findCustomerByName(l, name)].phoneNumbers.push_back(phone);
+void deletePhoneNumber(ListOfCustomers &list, string phoneNumber) {
+    for (int i = 0; i < list.numOfCustomers; i++) {
+        for (int j = 0; j < list.arrCustomers[i].phoneNumbers.size(); j++) {
+            if (list.arrCustomers[i].phoneNumbers[j] == phoneNumber) {
+                list.arrCustomers[i].phoneNumbers.erase(
+                    list.arrCustomers[i].phoneNumbers.begin() + j);
+                return;
+            }
+        }
     }
+    cout << "No customer with phone number " << phoneNumber << " was found"
+         << endl;
 }
 
-void mergeCustomers (listOfCustomer &l, Customer c) {
-    if (findCustomerByName(l, c.name) == -1) {
-        insertCustomers(l, c, l.numOfCustomer);
-    } else {
+void appendPhoneNumber(ListOfCustomers &list, string name, string phoneNumber) {
+    int index = findCustomerByName(list, name);
+    if (index != -1)
+        list.arrCustomers[index].phoneNumbers.push_back(phoneNumber);
+}
+
+void mergeCustomer(ListOfCustomers &list, Customer c) {
+    int index = findCustomerByName(list, c.name);
+    if (index != -1) {
         for (int i = 0; i < c.phoneNumbers.size(); i++) {
-            if (c.phoneNumbers[i] != l.arrCustomer[findCustomerByName(l, c.name)].phoneNumbers[i]) {
-                l.arrCustomer[findCustomerByName(l, c.name)].phoneNumbers.push_back(c.phoneNumbers[i]);
+            if (c.phoneNumbers[i] != list.arrCustomers[index].phoneNumbers[i]) {
+                list.arrCustomers[index].phoneNumbers.push_back(
+                    c.phoneNumbers[i]);
             }
         }
+    } else {
+        insertCustomer(list, c, list.numOfCustomers);
     }
 }
 
-int main (int argc, char *argv[]) {
-    Customer c; listOfCustomer l ; string name; int k;
+int main() {
+    Customer c;
+    ListOfCustomers l;
+    string name;
+    int k;
+
+    // Input a list of customers
     inputListOfCustomers(l);
+
+    // Output list of customers
     outputListOfCustomers(l);
 
-    // insert customers by index
+    // Insert a customer
     inputCustomer(c);
-    cout << "Index for insert: "; cin >> k;
-    insertCustomers(l, c, k);
+    cout << "Index for insert: ";
+    cin >> k;
+    cin.ignore();
+    insertCustomer(l, c, k);
+
+    // Output list of customers after insert
     outputListOfCustomers(l);
 
-    // find customer by name
-    cin.ignore();
-    string name2;
-    cout << "\n\nName of customer to find: " << name; getline(cin, name2);
-    if (findCustomerByName(l, name2) == -1) {
-        cout << "No customers found with name: " << name << endl;
-    } else {
-        cout << "Found a customers: " << endl;
-        outputCustomer(l.arrCustomer[findCustomerByName(l, name2)]);
+    // Find a customer
+    cout << "Name of customer: ";
+    getline(cin, name);
+    k = findCustomerByName(l, name);
+    if (k == -1)
+        cout << "Not found the customer name: " << name;
+    else {
+        cout << "Found a customer: ";
+        outputCustomer(l.arrCustomers[k]);
     }
 
-    // delete customer by index
-    cout << "\n\nIndex for delete: "; cin >> k;
+    // Delete a customer
+    cout << "Index for delete: ";
+    cin >> k;
     deleteCustomer(l, k);
-    cout << "\n\nList of customers after delete";
+
+    // Output list of customers after delete
     outputListOfCustomers(l);
 
-    // a) delete customer by name
-    cin.ignore();
-    string name3;
-    cout << "\n\nEnter name to delete: "; getline(cin, name3);
-    deleteCustomerByName(l, name3);
-    cout << "\n\nList of customers after delete";
+    // Delete a customer by name
+    cout << "Name of customer to delete: ";
+    getline(cin, name);
+    deleteCustomerByName(l, name);
+
+    // Output list of customers after delete
     outputListOfCustomers(l);
 
-    // b) find customers by phone
-    string phone;
-    cout << "\n\nPhone of customer to find: "; getline(cin, phone);
-    if (findCustomerByPhone(l, phone) == -1) {
-        cout << "No customers found with phone: " << phone << endl;
-    } else {
-        cout << "Found a customers: " << endl;
-        outputCustomer(l.arrCustomer[findCustomerByPhone(l, phone)]);
-    }
+    // Find a customer by phone number
+    cout << "Phone number to find: ";
+    string phoneNumber;
+    getline(cin, phoneNumber);
+    findCustomerByPhoneNumber(l, phoneNumber);
 
-    // c) delete a phone of customers
-    string phone2;
-    cout << "\n\nInput the phone you want to delete: "; getline(cin, phone2);
-    if (findCustomerByPhone(l, phone2) == -1) {
-        cout << "No customers found with phone: " << phone2 << endl;
-    } else {
-        cout << "Found a customers, delete " << endl;
-        deleteCustomer(l, findCustomerByPhone(l, phone2));
-        cout << "\n\nList of customers after delete: ";
-        outputListOfCustomers(l);
-    }
+    // Delete a phone number
+    cout << "Phone number to delete: ";
+    getline(cin, phoneNumber);
+    deletePhoneNumber(l, phoneNumber);
 
-    // d) append phone
-    string name4, phone3;
-    do {
-        cout << "\nInput the name of customers you want to append: "; getline(cin, name4);
-    } while(findCustomerByName(l, name4));
-    cout << "Input the phone you want to append to " << name4 << ": "; getline(cin, phone3);
-    appendPhone(l, name4, phone3);
-    cout << "\nList of customers after append: ";
+    // Append a phone number
+    cout << "Name of customer to append phone number: ";
+    getline(cin, name);
+    cout << "Phone number to append: ";
+    getline(cin, phoneNumber);
+    appendPhoneNumber(l, name, phoneNumber);
+
+    // Output list of customers after append
     outputListOfCustomers(l);
 
-    // e) merge customer
-    cout << "\nInput a customer to merge" << endl;
-    Customer customer;
-    inputCustomer(customer);
-    mergeCustomers(l, customer);
-    cout << "\nList of customers after merge: ";
+    // Merge a customer
+    inputCustomer(c);
+    mergeCustomer(l, c);
+
+    // Output list of customers after merge
     outputListOfCustomers(l);
 
     return 0;
 }
 
-// 3
-// Le Nhat Truong
-// Binh Dinh
+
+// 2
+// Lê Nhật Trường
+// Định Nhất, Vĩnh Hỏa, Vĩnh Thạnh, Bình Định
 // 2
 // 0867755734
 // 0353260427
-// Huynh Minh Lam
-// Viet Nam
+// Lâm Thị Hữu Hạnh
+// Nguyễn Thái Học, Bình Định
+// 1
+// 0123456789
+// Lê Minh Hội
+// 213 Trần Cao Vân, Bình Định
 // 2
-// 036419723
-// 023461972
-// Hoang Huu Nhan
-// Viet Nam
-// 3
-// 0867755113
-// 0353260497
-// 0166419723
-// Phung My Hoang
-// Vinh Thanh, Binh Dinh
+// 0364197233
+// 0452679841
+// 1
+// Lê Nhật Trường
 // 2
-// 0364597233
 // 0867755734
+// 0353260427
+// Lê Nhật Trường
+// 0123456789
+// Huỳnh Hà Thanh Trúc
+// Nguyễn Thái Học, Bình Định
 // 1
-// Le Nhat Truong
-// 2
-// Le Nhat Truong
-// 0364597233
-// 0364597233
-// Hoang Huu Nhan
-// 0164297113
-// Hoang Huu Nhan
-// Viet Nam
-// 1
-// 1131131131
+// 0987654321
