@@ -1,0 +1,6 @@
+Huỳnh Hà Thanh Trúc,1.9
+Alice,3.9
+Charlie,2.5
+Lê Nhật Trường,4.0
+Bob,3.4
+
