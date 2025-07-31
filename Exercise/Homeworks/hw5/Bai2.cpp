@@ -1,9 +1,4 @@
-#include <algorithm>
 #include <bits/stdc++.h>
-#include <climits>
-#include <queue>
-#include <stack>
-#include <vector>
 
 using namespace std;
 
@@ -123,16 +118,18 @@ int main() {
     sortQueue(q);
     printQueue(q);
 
-    // stack<int> s;
-    // s.push(5);
-    // s.push(3);
-    // s.push(2);
-    // s.push(8);
-    // printStack(s);
-    // cout << "Thêm phần tử 4 vào vị trí 2 của stack: ";
-    // pushK(s, 4, 2);
-    // printStack(s);
-    // cout << "Khoá nhỏ nhât của ngăn xếp là: " << findMinStack(s) << endl;
+    cout << "\n\n///////////\n\n\n";
+
+    stack<int> s;
+    s.push(5);
+    s.push(3);
+    s.push(2);
+    s.push(8);
+    printStack(s);
+    cout << "Thêm phần tử 4 vào vị trí 2 của stack: ";
+    pushK(s, 4, 2);
+    printStack(s);
+    cout << "Khoá nhỏ nhât của ngăn xếp là: " << findMinStack(s) << endl;
 
     return 0;
 }
