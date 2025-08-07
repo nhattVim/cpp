@@ -1,5 +1,5 @@
-Huỳnh Hà Thanh Trúc,9
+Huỳnh Hà Thanh Trúc,1.9
 Alice,3.9
 Charlie,2.5
-Lê Nhật Trường,10
+Lê Nhật Trường,4
 Bob,3.4
